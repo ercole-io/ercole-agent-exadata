@@ -15,9 +15,6 @@
 
 package model
 
-// ExtraInfo holds information about database, licenses and filesystem.
-type ExtraInfo struct {
-	Databases   []Database
-	Filesystems []Filesystem
-	Exadata     Exadata
+type Exadata struct {
+	Devices []ExadataDevice
 }

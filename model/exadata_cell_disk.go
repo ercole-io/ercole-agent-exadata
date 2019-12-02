@@ -15,9 +15,10 @@
 
 package model
 
-// ExtraInfo holds information about database, licenses and filesystem.
-type ExtraInfo struct {
-	Databases   []Database
-	Filesystems []Filesystem
-	Exadata     Exadata
+type ExadataCellDisk struct {
+	StorageServerName string `json:"-"`
+	Name              string
+	Status            string
+	ErrCount          string
+	UsedPerc          string
 }

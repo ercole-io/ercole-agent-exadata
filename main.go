@@ -70,10 +70,28 @@ func buildData(configuration config.Configuration) {
 	out = fetcher("filesystem")
 	filesystems := marshal.Filesystems(out)
 
+	out = fetcher("exadata-info")
+	exadataDevices := marshal.ExadataDevices(out)
+	out = fetcher("exadata-storage-status")
+	exadataCellDisks := marshal.ExadataCellDisks(out)
+
+	//Join exadataDevices with exadataCellDisks
+	for _, cd := range exadataCellDisks {
+		for i := range exadataDevices {
+			if cd.StorageServerName == exadataDevices[i].Hostname {
+				if exadataDevices[i].CellDisks == nil {
+					exadataDevices[i].CellDisks = []model.ExadataCellDisk{}
+				}
+				exadataDevices[i].CellDisks = append(exadataDevices[i].CellDisks, cd)
+			}
+		}
+	}
+
 	hostData := new(model.HostData)
 	extraInfo := new(model.ExtraInfo)
 	extraInfo.Filesystems = filesystems
 	extraInfo.Databases = []model.Database{}
+	extraInfo.Exadata.Devices = exadataDevices
 	hostData.Extra = *extraInfo
 	hostData.Info = host
 	hostData.Hostname = host.Hostname
