@@ -1,0 +1,13 @@
+[Unit]
+Description=Ercole Agent Exadata
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/ercole-agent-exadata
+User=ercole
+ExecStart=/opt/ercole-agent-exadata/ercole-agent-exadata
+PIDFile=/opt/ercole-agent-exadata/run/ercole-agent-exadata.pid
+
+[Install]
+WantedBy=multi-user.target

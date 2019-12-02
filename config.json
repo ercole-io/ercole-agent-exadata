@@ -1,0 +1,11 @@
+{
+    "hostname": "default",
+    "envtype": "PROD",
+    "location": "Germany",
+    "serverurl": "https://ercole.sorintdev.it/host/update",
+    "serverusr": "user",
+    "serverpsw": "password",
+    "frequency": 24,
+    "hosttype": "exadata",
+    "EnableServerValidation": false
+}
