@@ -19,18 +19,6 @@ Buildroot: /tmp/rpm-ercole-agent-exadata
 Ercole Exadata Agent collects information about the exadata and storage
 running on the local machine and send information to a central server
 
-%pre
-getent passwd ercole >/dev/null || \
-    useradd -r -g oinstall -G oinstall,dba -d /home/ercole-agent-exadata -m -s /bin/bash \
-    -c "Ercole agent user" ercole
-getent passwd ercole >/dev/null || \
-    useradd -r -g dba -d /home/ercole-agent-exadata -m -s /bin/bash \
-    -c "Ercole agent user" ercole
-getent passwd ercole >/dev/null || \
-    useradd -r -g oinstall -d /home/ercole-agent-exadata -m -s /bin/bash \
-    -c "Ercole agent user" ercole
-exit 0
-
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -54,7 +42,7 @@ install -m 0644 package/rhel7/60-ercole-agent-exadata.preset %{buildroot}%{_pres
 /usr/bin/systemctl daemon-reload >/dev/null 2>&1 ||:
 
 %files
-%attr(-,ercole,-) /opt/ercole-agent-exadata/run
+%attr(-,root,-) /opt/ercole-agent-exadata/run
 %dir /opt/ercole-agent-exadata
 %dir /opt/ercole-agent-exadata/fetch
 %config(noreplace) /opt/ercole-agent-exadata/config.json
