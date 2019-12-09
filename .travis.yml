@@ -22,6 +22,9 @@ matrix:
     - go: 1.12.x
       env: GOOS=linux GOARCH=amd64 DIST_FAMILY=RHEL DIST=rhel7 BIN=ercole-agent-exadata GO111MODULE=on
         PACKAGE_BUILD_IMAGE=sorintdev/rpmbuild-centos7
+    - go: 1.12.x
+      env: GOOS=linux GOARCH=amd64 DIST_FAMILY=RHEL DIST=rhel6 BIN=ercole-agent-exadata GO111MODULE=on
+        PACKAGE_BUILD_IMAGE=sorintdev/rpmbuild-centos6
 
 before_install:
   - sudo docker pull ${PACKAGE_BUILD_IMAGE}
