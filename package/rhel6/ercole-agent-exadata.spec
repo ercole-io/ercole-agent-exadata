@@ -31,7 +31,6 @@ install -m 644 package/rhel6/logrotate $RPM_BUILD_ROOT/etc/logrotate.d/ercole-ag
 chkconfig ercole-agent-exadata on
 
 %files
-%attr(-,root,-) /opt/ercole-agent-exadata/run
 %dir /opt/ercole-agent-exadata
 %dir /opt/ercole-agent-exadata/fetch
 %config(noreplace) /opt/ercole-agent-exadata/config.json
